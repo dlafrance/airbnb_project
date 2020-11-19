@@ -1,8 +1,8 @@
 import numpy as np
 import lightgbm as lgb
-from sklearn.model_selection import train_test_split, KFold, StratifiedKFold
+from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.metrics import log_loss
-from airbnb_project.preprocessing import preprocessing_data
+from airbnb.preprocessing import preprocessing_data
 
 
 def train_model():

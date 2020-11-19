@@ -104,5 +104,6 @@ def preprocessing_data():
     # Replace missing numeric values by mean
     c = main_df.select_dtypes(np.number).columns
     main_df[c] = main_df[c].fillna(main_df[c].median())
+    print("Pre-processing done")
 
     return main_df
