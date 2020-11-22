@@ -10,22 +10,33 @@ def train_model():
 
     # Model params
     model_lgb = lgb.LGBMClassifier(
-        objective='muticlass',
+
+        objective='multiclass',
         metric='multi_logloss',
         num_class=11,
+        boosting_type='gbdt',
         n_jobs=-1,
         n_estimators=100000,
-        learning_rate=0.001,
-        num_leaves=200,
-        max_depth=-1,
+        learning_rate=0.01,
+        num_leaves=20,
+        max_depth=2,
         feature_fraction=0.9,
         bagging_freq=5,
         bagging_fraction=0.9,
-        min_data_in_leaf=100,
+        min_data_in_leaf=18,
         silent=-1,
         verbose=-1,
         max_bin=300,
-        bagging_seed=11,
+        bagging_seed=10,
+        seed=10,
+        feature_fraction_seed=10,
+        drop_seed=10,
+        data_random_seed=10,
+        lambda_l1=10,
+        lambda_l2=7,
+        min_gain_to_split=0.5,
+        min_sum_hessian_in_leaf=0.5
+
     )
 
     # Split train and test data
@@ -57,7 +68,7 @@ def train_model():
 
         model = model_lgb
         model.fit(tr_X, tr_y, eval_set=[(tr_X, tr_y), (va_X, va_y)], eval_metric='multi_logloss', verbose=500,
-                  early_stopping_rounds=300)
+                  early_stopping_rounds=100)
 
         # calculate current logloss after training the model
         pred_va_y = model.predict_proba(va_X, num_iteration=model.best_iteration_)
@@ -67,3 +78,5 @@ def train_model():
         models.append(model)
 
     print('the average mean logloss is:{}'.format(np.mean(logloss_scores)))
+
+    return models

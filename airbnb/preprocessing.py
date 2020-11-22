@@ -26,16 +26,19 @@ def preprocessing_data():
 
     main_df['account_created_year'] = main_df['date_account_created'].dt.year
     main_df['account_created_month'] = main_df['date_account_created'].dt.month
+    main_df['account_created_week'] = main_df['date_account_created'].dt.week
     main_df['account_created_day'] = main_df['date_account_created'].dt.day
     main_df['account_created_weekday'] = main_df['date_account_created'].dt.weekday
 
     main_df['first_booking_year'] = main_df['date_first_booking'].dt.year
     main_df['first_booking_month'] = main_df['date_first_booking'].dt.month
+    main_df['first_booking_week'] = main_df['date_first_booking'].dt.week
     main_df['first_booking_day'] = main_df['date_first_booking'].dt.day
     main_df['first_booking_weekday'] = main_df['date_first_booking'].dt.weekday
 
     main_df['first_active_year'] = main_df['timestamp_first_active'].dt.year
     main_df['first_active_month'] = main_df['timestamp_first_active'].dt.month
+    main_df['first_active_week'] = main_df['timestamp_first_active'].dt.week
     main_df['first_active_day'] = main_df['timestamp_first_active'].dt.day
     main_df['first_active_weekday'] = main_df['timestamp_first_active'].dt.weekday
     main_df['first_active_hour'] = main_df['timestamp_first_active'].dt.hour
