@@ -36,9 +36,32 @@ It is interesting that datetime features along with the user's age were quite im
 
 ### Data pre-processing
 
+**Missing data**
+- `country_destination`: a large number of the target's data points were actually listed as `NDF` or not defined. Since the goal of the model is to predict the destination, rows with non-defined countries were removed.
+- `age`: missing data were replaced by the median age.
+- `first_affiliate_tracked`: NAs were replaced by a `unknown`, `action_type
+- `sessions_df`: in this table, missing values in `action`, `action_type` and `action_detail` were replaced by `-unknown-`. Also, rows with missing `user_id` were removed. Once this table was merged to the main table, all the remaining missing values were replaced by the median.
 
+**Outliers**
+- `age`: outliers were identified in the age fields, such as users above 90 and below 18. It's very unlike that Airbnb users would exist beyond those limits, therefore they were replaced by the median age.
+- `secs_elapsed`: any data points above the 90th quantile were removed 
 
 ### Feature engineering
+
+- Datetime fields: features from datetime fieds were created such as year, month, week, day, weekday and hour. Two additional features were also created to account for the difference between the first booking date, the account creation date and the first active date. It was an assumption that these features would be important consideing an account creation is necessary to make a booking.
+- Age groups: an additional feature for age groups was created.
+- Encoding: categorical fields were one-hote encoded, with the exception of `age_group` and `country_destination` which were label encoded.
+- Sessions data aggregation: New fields were created from aggregating fields by `user_id` from the sessions table. These fields were then merged to the main table.
+
+```python
+
+'action': ['count','nunique'],
+'action_type': ['nunique'],
+'action_detail': ['nunique'],
+'device_type': ['nunique'],
+'secs_elapsed': ['sum', 'mean','median', 'min', 'max']
+
+```
 
 ### Model
 
@@ -46,74 +69,6 @@ It is interesting that datetime features along with the user's age were quite im
 
 ### Results
 
-
-The EA Sports [FIFA video game](https://www.ea.com/games/fifa/fifa-20) is the definitive game for football fans across the world, with the series selling over 260 million copies as of 2018. Each player in the game has an overall rating (0-100) which is a function of 34 different skills such as passing, shooting and agility. With this data available, we are able to gather insight into the game and the player's themselves to see which factors make them good.
-
-Obviously, the required skill set for each position is likely different. The challenge is to find out whether the skills data can correctly predict the player's position on the field, and which skills are most important for each position.
-
-This classification problem can be approached with the supervised learning model of logistic regression. The results yield an accuracy of `0.91`, proving that the level of different skills can predict the player's position at a performant rate.
-
-### Introduction
-
-The dataset was pulled from [Kaggle](https://www.kaggle.com/stefanoleone992/fifa-20-complete-player-dataset) with only the 2020 edition data selected. Features include:
-
-- Player positions, with the role in the club and in the national team
-- Player attributes with statistics as Attacking, Skills, Defense, Mentality, GK Skills, etc.
-- Player personal data like Nationality, Club, DateOfBirth, Wage, Salary, etc.
-
-The shape of the dataset is `(18278, 104)`, but was reduced to 34 features for the model.
-
-### Methods
-
-Logistic regression was used to model this dataset, using the algorithm from the scikit-learn package.
-Code for this algorithm can be found [here](https://scikitlearn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html).
-
-In summary, logistic regression seeks to model the probabilty of the occurence of a categorical variable. In this case, our target is the player's position split into 4 categories (FWD, DEF, MID, GK) making this dataset ideal for supervised learning classification.
-
-### Results
-
-When looking at overall FIFA Rating of the players in the dataset, the distributions by position are very similar with only marginal differences.
-
-![boxplot](./plots/box_position_rating.png)
-
-However, each position has strengths and weaknesses with regards to the different skills. For example, the skill of "dribbling" is distributed differently across positions. Midfielders require strong dribbling skills, so as do forwards, whereas the distribution is flattened for defenders and unnecessary for goalkeepers.
-
-![hist](./plots/hist_rating_position.png)
-
-Therefore the dataset can likely predict that player's position based on their rating for the different skills. The potential for a classification model becomes evident even when looking at the top 3 skills per position:
-
-- Position FWD: movement_sprint_speed, power_strength, movement_acceleration
-- Position MID: movement_balance, movement_agility, movement_acceleration
-- Position DEF: power_strength, power_jumping, power_stamina
-- Position GK: goalkeeping_reflexes, goalkeeping_diving, goalkeeping_positioning
-
-#### Logistic regression model
-
-The logistic regression model was able to correctly predict the true position of the players at a high rate, with an accuracy score of `0.91`. The classification report below shows high levels of precision, recall and, in turn, the f1-score by position. 
-
-```python
-Classification Report
-              precision    recall  f1-score   support
-
-         DEF       0.91      0.91      0.91      1221
-         FWD       0.87      0.85      0.86       496
-          GK       1.00      1.00      1.00       408
-         MID       0.88      0.89      0.89      1531
-
-    accuracy                           0.91      3656
-   macro avg       0.92      0.91      0.92      3656
-weighted avg       0.91      0.91      0.91      3656
-```
-
-From the confusion matrix, we see that all goalkeepers were predicted to be goalkeepers, which makes sense as their skill set is very specific to their prosition. On the other hand, the skills from defenders and forwards can be associated to the midfielder position. This position holds the largest range in skills as some midfielders focus more on defending while others on attacking.
-
-![confusion_matrix](./plots/confusion_matrix.png)
-
-### Discussion
-
-The logistic regression method was performant in predicting the player's position from the skill features. Certainly, the model wasn't perfect, but overall a player's skill set will predict their position on the field with high accuracy.
-
-It would be interesting to see if the player's who were not well classified could actually be solid candidates for other positions. Maybe certain midfielders would actually be better defenders, while some might be better suited as forwards. I can say with certainty that none of them would be proper professional goalkeepers!
 
 ### References
 
