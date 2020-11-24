@@ -1,21 +1,25 @@
-# cebd1160: Predicting player's position from FIFA 2020 skills data
+![cce](./plots/cce.png)
+
+# cebd1260: Predicting Destination Booking for New Airbnb Users
 
 | Name | Date |
 |:-------|:---------------|
-|Donald Lafrance| March 24, 2020|
+|Donald Lafrance| November 24, 2020|
 
 -----
 
 ### Resources
 
-- Python script for your analysis: `fifa_log.py`
-- Results figure/saved file: `plots/`
+- Pipeline: `airbnb/`
+- Figures: `plots/`
 
 -----
 
-## Research Question
+## Introduction
 
 Can a football player's set of skills predict their position on the field?
+
+## Pipeline
 
 ### Abstract
 
