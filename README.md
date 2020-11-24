@@ -73,8 +73,13 @@ Although XGBOOST modeling yielded a similar results, the Light GBM algorith was 
 
 Light GBM is a boosting model based on a decision tree algorithm. Instead in splitting the tree level-wise like XGBOOST:
 
-![cce](./plots/cce.png)
+![level](./plots/level.png)
 
+Light GBM will grow the tree on the same leaf, therefore splitting the tree leaf-wise, which can reduce loss to a greater extent than XGBOOST:
+
+![leaf](./plots/leaf.png)
+
+Overfitting can occur with Light GBM as it converges quickly, and this can be happen if the parameters aren't set correctly. One rule of thumb is to ensure that `num_leaves` < `2^max_depth` to avoid overfitting the model.
 
 ### Methodologies
 
