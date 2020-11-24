@@ -39,7 +39,7 @@ It is interesting that datetime features along with the user's age were quite im
 **Missing data**
 - `country_destination`: a large number of the target's data points were actually listed as `NDF` or not defined. Since the goal of the model is to predict the destination, rows with non-defined countries were removed.
 - `age`: missing data were replaced by the median age.
-- `first_affiliate_tracked`: NAs were replaced by a `unknown`, `action_type
+- `first_affiliate_tracked`: NAs were replaced by a `unknown`, `action_type`
 - `sessions_df`: in this table, missing values in `action`, `action_type` and `action_detail` were replaced by `-unknown-`. Also, rows with missing `user_id` were removed. Once this table was merged to the main table, all the remaining missing values were replaced by the median.
 
 **Outliers**
@@ -64,6 +64,17 @@ It is interesting that datetime features along with the user's age were quite im
 ```
 
 ### Model
+
+Although XGBOOST modeling yielded a similar results, the Light GBM algorith was chosen for its:
+- Faster processing speed
+- Lower memory usage
+- Slightly better results
+
+
+Light GBM is a boosting model based on a decision tree algorithm. Instead in splitting the tree level-wise like XGBOOST:
+
+![cce](./plots/cce.png)
+
 
 ### Methodologies
 
