@@ -6,22 +6,46 @@
 |:-------|:---------------|
 |Donald Lafrance| November 24, 2020|
 
------
-
 ### Resources
 
-- Pipeline: `airbnb/`
+- Pipeline files: `airbnb/`
 - Figures: `plots/`
 
 -----
 
 ## Introduction
 
-Can a football player's set of skills predict their position on the field?
+Airbnb is the world's leader for the online marketplace of short-term hospitality bookings, whether it's an apartment, hotel or other tourism lodgins and experiences. It's platform allows users to connect directly with hosts and facilitate holiday experiences. Airbnb does not own the listed property, but does make revenue from booking fees and other service fees associated to the transaction between guests and hosts. This exchange does include a great number of data points for each user, thus an opportunity for predictive modeling based on each user's actions and identity.
+
+This machine learning use case aims to predict a new user's first booking destination. Training users booking data can provide insight into predicting a new user's preference towards their first booking travel destination. Facilitating this first booking through machine learning has the potential to increase the likelihood of a booking's occurence, and therefore increasing revenues.
+
+After exploring past user data, the first step of the pipeline was to perform data pre-processing to remove/fill NAs and encode fields for the next step of the pipeline. Then, new features were created (date fields) and aggregated from the `sessions` table and merged to the `main` table to increase the total count of features. Finally, a LightGBM framework was used for modeling the data over 5 folds for multi-class classification.
+
+The models generated an average logloss of **1.34**, while the top features of importance were:
+1) _age_
+2) _first_booking_week_
+3) _first_active_hour_
+4) _first_booking_day_
+5) _diff_booking_first_active_
+
+It is interesting that datetime features along with the user's age were quite important in the model prediction of the country destination of the booking.
+
+## Data exploration
 
 ## Pipeline
 
-### Abstract
+### Data pre-processing
+
+
+
+### Feature engineering
+
+### Model
+
+### Methodologies
+
+### Results
+
 
 The EA Sports [FIFA video game](https://www.ea.com/games/fifa/fifa-20) is the definitive game for football fans across the world, with the series selling over 260 million copies as of 2018. Each player in the game has an overall rating (0-100) which is a function of 34 different skills such as passing, shooting and agility. With this data available, we are able to gather insight into the game and the player's themselves to see which factors make them good.
 
