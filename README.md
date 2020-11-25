@@ -52,7 +52,7 @@ It is interesting that datetime features along with the user's age were quite im
 
 - Datetime fields: features from datetime fieds were created such as year, month, week, day, weekday and hour. Two additional features were also created to account for the difference between the first booking date, the account creation date and the first active date. It was an assumption that these features would be important consideing an account creation is necessary to make a booking.
 - Age groups: an additional feature for age groups was created.
-- Encoding: categorical fields were one-hote encoded, with the exception of `age_group` and `country_destination` which were label encoded.
+- Encoding: categorical fields were one-hot encoded, with the exception of `age_group` and `country_destination` which were label encoded.
 - Sessions data aggregation: New fields were created from aggregating fields by `user_id` from the sessions table. These fields were then merged to the main table.
 
 ```python
