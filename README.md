@@ -101,7 +101,9 @@ The following chart shows the top 20 features of importance for the model:
 
 ![features](./plots/features.png)
 
-### References
+-----
+
+## References
 
 - Light GBM methods: https://medium.com/@nitin9809/lightgbm-binary-classification-multi-class-classification-regression-using-python-4f22032b36a2#:~:text=LightGBM%20is%20a%20gradient%20boosting,uses%20tree%2Dbased%20learning%20algorithms.&text=While%20LightGBM%20can%20handle%20a,faster%20training%20speed%20and%20efficiency.
 - Light GBM vs XGBOOST: https://www.analyticsvidhya.com/blog/2017/06/which-algorithm-takes-the-crown-light-gbm-vs-xgboost/
