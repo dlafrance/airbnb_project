@@ -30,8 +30,6 @@ The models generated an average logloss of **1.34**, while the top features of i
 
 It is interesting that datetime features along with the user's age were quite important in the model prediction of the country destination of the booking.
 
-## Data exploration
-
 ## Pipeline
 
 ### Data pre-processing
