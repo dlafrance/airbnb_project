@@ -85,16 +85,23 @@ Overfitting can occur with Light GBM as it converges quickly, and this can be ha
 
 The data was split in training and test sets of 90% and 10%, respectively. K-fold cross-validation was used to evaluate the model before applying it to the test set. Approximately 5 folds were applied.
 
-As the goal was to classify destinations, the light GBM model was adjusted for multi-classification, including the number of classes (11). The model was evaluated on the logloss result.
+As the goal was to classify destinations, the light GBM model was adjusted for multi-classification, including the number of classes (11). The model was evaluated on the multi-logloss result.
 
 Furher parameter tuning of the model was achieved through Bbyesian optimatization, in which certain parameter tweaking yielded marginally better results.
 
 ### Results
 
+The avergage multi-logloss across the 5 cross-validation folds is **1.34**.
+
+The following chart shows the top 20 features of importance for the model:
+
+![features](./plots/features.png)
 
 ### References
 
-- Data set: https://www.kaggle.com/stefanoleone992/fifa-20-complete-player-dataset
-- Logistic regression package: https://scikitlearn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
+- Light GBM methods: https://medium.com/@nitin9809/lightgbm-binary-classification-multi-class-classification-regression-using-python-4f22032b36a2#:~:text=LightGBM%20is%20a%20gradient%20boosting,uses%20tree%2Dbased%20learning%20algorithms.&text=While%20LightGBM%20can%20handle%20a,faster%20training%20speed%20and%20efficiency.
+- Light GBM vs XGBOOST: https://www.analyticsvidhya.com/blog/2017/06/which-algorithm-takes-the-crown-light-gbm-vs-xgboost/
+- K-folds cross-validation: https://machinelearningmastery.com/k-fold-cross-validation/
+
 
 -------
