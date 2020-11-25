@@ -36,18 +36,18 @@ It is interesting that datetime features along with the user's age were quite im
 
 ### Data pre-processing
 
-**Missing data**
 - `country_destination`: a large number of the target's data points were actually listed as `ndf` or not defined. Since the goal of the model is to predict the destination, rows with non-defined countries were removed.
 
   This chart shows how significant the count of data points were for non-defined destinations:
   ![country](./plots/country.png)
 
-- `age`: missing data were replaced by the median age.
+- `age`: missing data were replaced by the median age and outliers were identified, such as users above 90 and below 18. It's very unlike that Airbnb users would exist beyond those limits, therefore they were replaced by the median age.
+
+  Overall, it's quite easy to notice that Airbnb users are mostly in the 24-39 age range:
+  ![age](./plots/age.png)
+
 - `first_affiliate_tracked`: NAs were replaced by a `unknown`, `action_type`
 - `sessions_df`: in this table, missing values in `action`, `action_type` and `action_detail` were replaced by `-unknown-`. Also, rows with missing `user_id` were removed. Once this table was merged to the main table, all the remaining missing values were replaced by the median.
-
-**Outliers**
-- `age`: outliers were identified in the age fields, such as users above 90 and below 18. It's very unlike that Airbnb users would exist beyond those limits, therefore they were replaced by the median age.
 - `secs_elapsed`: any data points above the 90th quantile were removed 
 
 ### Feature engineering
