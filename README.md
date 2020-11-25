@@ -37,7 +37,11 @@ It is interesting that datetime features along with the user's age were quite im
 ### Data pre-processing
 
 **Missing data**
-- `country_destination`: a large number of the target's data points were actually listed as `NDF` or not defined. Since the goal of the model is to predict the destination, rows with non-defined countries were removed.
+- `country_destination`: a large number of the target's data points were actually listed as `ndf` or not defined. Since the goal of the model is to predict the destination, rows with non-defined countries were removed.
+
+  This chart shows how significant the count of data points were for non-defined destinations:
+  ![country](./plots/country.png)
+
 - `age`: missing data were replaced by the median age.
 - `first_affiliate_tracked`: NAs were replaced by a `unknown`, `action_type`
 - `sessions_df`: in this table, missing values in `action`, `action_type` and `action_detail` were replaced by `-unknown-`. Also, rows with missing `user_id` were removed. Once this table was merged to the main table, all the remaining missing values were replaced by the median.
