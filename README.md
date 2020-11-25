@@ -83,6 +83,12 @@ Overfitting can occur with Light GBM as it converges quickly, and this can be ha
 
 ### Methodologies
 
+The data was split in training and test sets of 90% and 10%, respectively. K-fold cross-validation was used to evaluate the model before applying it to the test set. Approximately 5 folds were applied.
+
+As the goal was to classify destinations, the light GBM model was adjusted for multi-classification, including the number of classes (11). The model was evaluated on the logloss result.
+
+Furher parameter tuning of the model was achieved through Bbyesian optimatization, in which certain parameter tweaking yielded marginally better results.
+
 ### Results
 
 
