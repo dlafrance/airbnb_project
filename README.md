@@ -89,7 +89,7 @@ The data was split in training and test sets of 90% and 10%, respectively. K-fol
 
 As the goal was to classify destinations, the light GBM model was adjusted for multi-classification, including the number of classes (11). The model was evaluated on the multi-logloss result.
 
-Furher parameter tuning of the model was achieved through Bbyesian optimatization, in which certain parameter tweaking yielded marginally better results.
+Furher parameter tuning of the model was achieved through Bayesian optimatization, in which certain parameter tweaking yielded marginally better results.
 
 ### Results
 
